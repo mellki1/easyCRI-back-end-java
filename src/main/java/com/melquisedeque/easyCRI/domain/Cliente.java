@@ -9,8 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Cliente implements Serializable {
-	
-	
+		
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -54,11 +53,6 @@ public class Cliente implements Serializable {
 		this.email = email;
 		this.telefone = telefone;
 	}
-
-
-
-
-
 
 	@Override
 	public int hashCode() {
