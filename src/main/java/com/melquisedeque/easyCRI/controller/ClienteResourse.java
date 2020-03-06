@@ -1,7 +1,6 @@
 package com.melquisedeque.easyCRI.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,16 +59,15 @@ public class ClienteResourse {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@RequestMapping(value="/nome?term= {term}")
+	@RequestMapping(value="/nome")
 	@ResponseBody
-	public List<String> clientesNomesAutocomplete(@RequestParam(value="term", required=false, defaultValue="") String term){
+	public ResponseEntity<?> clientesNomesAutocomplete(@RequestParam(value="term", required=false, defaultValue="") String term){
 		List<String> sugestoes = new ArrayList<String>();
 		List<Cliente> allClientes = service.findAll();
 		for(Cliente clientes : allClientes) {
-			sugestoes.add(clientes.toString());
+			sugestoes.add(clientes.getNome());
 		}
-		System.out.println("\n ALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:\t"+ sugestoes);
-		return sugestoes;
+		return ResponseEntity.ok().body(sugestoes);
 		
 	}
 	
