@@ -1,4 +1,4 @@
-package com.melquisedeque.easyCRI.domain;
+package com.melquisedeque.easyCRI.entity;
 
 import java.io.Serializable;
 
@@ -190,6 +190,12 @@ public class Cliente implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Cliente [nome=" + nome + "]";
 	}
 
 
