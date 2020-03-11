@@ -8,9 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import com.melquisedeque.easyCRI.entity.enums.TipoAto;
-import com.melquisedeque.easyCRI.entity.enums.TipoRequerimento;
 
 @Entity
 public class Requerimento implements Serializable{
@@ -27,16 +25,14 @@ public class Requerimento implements Serializable{
     @JoinColumn(name="idCliente", nullable=false)
 	private Cliente cliente;
 	
-	private TipoRequerimento tipoRequerimento;
 	private TipoAto tipoAto;
 	
 	public Requerimento() {}
 
-	public Requerimento(Integer id, Cliente cliente, TipoRequerimento tipoRequerimento, TipoAto tipoAto) {
+	public Requerimento(Integer id, Cliente cliente, TipoAto tipoAto) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
-		this.tipoRequerimento = tipoRequerimento;
 		this.tipoAto = tipoAto;
 	}
 
@@ -80,14 +76,6 @@ public class Requerimento implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-	public TipoRequerimento getTipoRequerimento() {
-		return tipoRequerimento;
-	}
-
-	public void setTipoRequerimento(TipoRequerimento tipoRequerimento) {
-		this.tipoRequerimento = tipoRequerimento;
 	}
 
 	public TipoAto getTipoAto() {
