@@ -1,23 +1,21 @@
 package com.melquisedeque.easyCRI.entity.enums;
 
 public enum TipoAto {
+
+	ABERTURA_DE_MATRICULA (1, "Abertura de matrícula", "Averbação"),
+	ADITIVO (2, "Aditivo", "Averbação"),
+	ALTERACAO_CPF (3, "Alteração de CPF", "Averbação"),
+	ALTERACAO_NOME (4, "Alteração de nome", "Averbação"),
+	ALTERACAO_RG (5, "Alteração de RG", "Averbação");
 	
-	ABERTURA_DE_MATRICULA (1, "Abertura de matrícula", "Averbação", ""),
-	ADITIVO (2, "Aditivo", "Averbação", ""),
-	ALTERACAO_CPF (3, "Alteração de CPF", "Averbação", ""),
-	ALTERACAO_NOME (4, "Alteração de nome", "Averbação", ""),
-	ALTERACAO_RG (5, "Alteração de RG", "Averbação", "");
-	
-	private int cod;
+	private Integer cod;
 	private String nome;
 	private String tipoRequerimento;
-	private String texto;
-	
-	private TipoAto(int cod, String tipoRequerimento, String nome, String texto) {
+
+	private TipoAto(Integer cod, String tipoRequerimento, String nome) {
 		this.cod = cod;
 		this.tipoRequerimento = tipoRequerimento;
 		this.nome = nome;
-		this.texto = texto;
 	}
 
 	public int getCod() {
@@ -44,13 +42,6 @@ public enum TipoAto {
 		this.nome = nome;
 	}
 
-	public String getTexto() {
-		return texto;
-	}
-
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
 
 	public static TipoAto toEnum(Integer cod) {
 		if(cod == null) {

@@ -70,14 +70,6 @@ public class Requerimento implements Serializable{
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public TipoAto getTipoAto() {
 		return tipoAto;
 	}
