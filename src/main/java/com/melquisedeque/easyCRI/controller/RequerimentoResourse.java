@@ -46,7 +46,7 @@ public class RequerimentoResourse {
 		List<String> sugestoes = new ArrayList<String>();
 		List<TipoAto> todosTiposAtos = Arrays.asList(TipoAto.values());
 		for(TipoAto tipoAto : todosTiposAtos) {
-			sugestoes.add(tipoAto.getDescricao());
+			sugestoes.add(tipoAto.getNome());
 		}
 		return ResponseEntity.ok().body(sugestoes);
 		
