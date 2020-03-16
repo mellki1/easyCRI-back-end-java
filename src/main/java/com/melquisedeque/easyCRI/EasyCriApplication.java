@@ -33,7 +33,7 @@ public class EasyCriApplication implements CommandLineRunner{
 		
 		
 		Requerimento req1 = new Requerimento(null, cli1, TipoAto.ABERTURA_DE_MATRICULA);
-		
+		req1.setCliente(cli1);
 		
 		//Requerimento req2 = new Requerimento(null, TipoAto.ABERTURA_DE_MATRICULA);
 		
