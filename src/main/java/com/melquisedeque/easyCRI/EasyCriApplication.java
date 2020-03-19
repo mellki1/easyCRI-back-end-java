@@ -17,6 +17,7 @@ public class EasyCriApplication implements CommandLineRunner{
 
 	@Autowired
 	private ClienteDAO clienteDAO; 
+	@Autowired
 	private RequerimentoDAO requerimentoDAO;
 	
 	public static void main(String[] args) {

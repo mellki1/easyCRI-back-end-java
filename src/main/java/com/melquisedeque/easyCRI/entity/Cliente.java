@@ -30,6 +30,7 @@ public class Cliente implements Serializable {
 	private String email;
 	private String telefone;
 	
+
 	public Cliente () {}
 
 
