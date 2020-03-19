@@ -2,9 +2,6 @@ package com.melquisedeque.easyCRI;
 
 
 
-import java.util.Arrays;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -34,11 +31,9 @@ public class EasyCriApplication implements CommandLineRunner{
 		clienteDAO.save(cli1);
 		//Cliente cli2 = new Cliente(null, "Angela Valentim da Silva", "brasileira", "casada", "técnica em química", "MG-1.557.558", "PC", "MG", "763.029.114-00", "Joé Valentim da Silva", 		"Antonia Valentim da Silva", "Avenida Reinaldo Franco de Morais, nº.1175, Santa Vitória-MG", "angela-silva@hotmail.com", "34 99990-9670");
 	
-
 		
 		Requerimento req1 = new Requerimento(null, "2009-02-27");
-		cli1.setRequerimento(Arrays.asList(req1));
-		req1.setClientes(Arrays.asList(cli1));
+		req1.setCliente(cli1);
 		requerimentoDAO.save(req1);
 		//Requerimento req2 = new Requerimento(null, TipoAto.ABERTURA_DE_MATRICULA);
 		

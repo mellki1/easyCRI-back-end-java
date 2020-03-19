@@ -1,15 +1,11 @@
 package com.melquisedeque.easyCRI.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Cliente implements Serializable {
@@ -33,13 +29,6 @@ public class Cliente implements Serializable {
 	private String endereço;
 	private String email;
 	private String telefone;
-	
-	@ManyToMany
-	@JoinTable(
-	  name = "requerimentos_clientes", 
-	  joinColumns = @JoinColumn(name = "cliente_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "requerimento_id"))
-	List<Requerimento> requerimento;
 	
 	public Cliente () {}
 
@@ -65,16 +54,6 @@ public class Cliente implements Serializable {
 	}
 	
 	
-
-	public List<Requerimento> getRequerimento() {
-		return requerimento;
-	}
-
-
-	public void setRequerimento(List<Requerimento> requerimento) {
-		this.requerimento = requerimento;
-	}
-
 
 	@Override
 	public int hashCode() {
