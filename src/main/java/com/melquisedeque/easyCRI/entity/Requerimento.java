@@ -1,14 +1,13 @@
 package com.melquisedeque.easyCRI.entity;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.melquisedeque.easyCRI.entity.enums.TipoAto;
 
@@ -23,8 +22,9 @@ public class Requerimento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToMany(mappedBy = "requerimento")
-	List<Cliente> clientes;
+	@ManyToOne
+    @JoinColumn
+	Cliente cliente;
     
 	private String data;
 	
@@ -38,15 +38,6 @@ public class Requerimento implements Serializable{
 		this.data = data;
 	}
 	
-
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
 
 	public Integer getId() {
 		return id;
@@ -72,6 +63,16 @@ public class Requerimento implements Serializable{
 	public void setTipoAto(TipoAto tipoAto) {
 		this.tipoAto = tipoAto;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 
 	
 
