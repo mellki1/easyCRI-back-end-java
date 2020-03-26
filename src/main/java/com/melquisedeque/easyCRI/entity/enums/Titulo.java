@@ -32,7 +32,6 @@ public enum Titulo {
 		this.nome = nome;
 	}
 
-
 	public static Titulo toEnum(Integer cod) {
 		if(cod == null) {
 			return null;
