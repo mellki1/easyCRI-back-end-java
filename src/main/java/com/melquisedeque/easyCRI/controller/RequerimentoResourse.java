@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.melquisedeque.easyCRI.entity.Requerimento;
-import com.melquisedeque.easyCRI.entity.enums.TipoAto;
+import com.melquisedeque.easyCRI.entity.enums.Titulo;
 import com.melquisedeque.easyCRI.services.RequerimentoService;
 
 @RestController
@@ -44,9 +44,9 @@ public class RequerimentoResourse {
 	@ResponseBody
 	public ResponseEntity<?> tiposDeAtoAutocomplete(@RequestParam(value="term", required=false, defaultValue="") String descricao){
 		List<String> sugestoes = new ArrayList<String>();
-		List<TipoAto> todosTiposAtos = Arrays.asList(TipoAto.values());
-		for(TipoAto tipoAto : todosTiposAtos) {
-			sugestoes.add(tipoAto.getNome());
+		List<Titulo> todosTiposAtos = Arrays.asList(Titulo.values());
+		for(Titulo titulo : todosTiposAtos) {
+			sugestoes.add(titulo.getNome());
 		}
 		return ResponseEntity.ok().body(sugestoes);
 		
