@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import com.melquisedeque.easyCRI.dao.TituloDAO;
-import com.melquisedeque.easyCRI.entity.enums.Titulo;
+import org.springframework.stereotype.Service;
 
-@Controller
+import com.melquisedeque.easyCRI.dao.TituloDAO;
+import com.melquisedeque.easyCRI.entity.Titulo;
+
+
+@Service
 public class TituloService {
 
 	@Autowired
@@ -25,5 +27,14 @@ public class TituloService {
 		Optional<Titulo> obj = repo.findById(id);
 		
 		return obj.orElse(null);
+	}
+	
+	public Titulo registerTitulo(String nome) {
+		
+		Titulo obj = new Titulo();
+		
+		obj.setNome(nome);
+		
+		return repo.save(obj);
 	}
 }

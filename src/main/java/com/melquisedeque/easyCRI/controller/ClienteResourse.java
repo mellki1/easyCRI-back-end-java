@@ -71,4 +71,15 @@ public class ClienteResourse {
 		
 	}
 	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<?> registerCliente(@PathVariable Cliente cli){
+		
+		Cliente obj = service.registerCliente(cli);
+		return ResponseEntity.ok().body("registro do cliente" +obj.getNome()+"efetuado com sucesso");
+		
+	}
+	
+	
+
+	
 }

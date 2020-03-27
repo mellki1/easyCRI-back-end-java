@@ -1,6 +1,7 @@
 package com.melquisedeque.easyCRI.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.melquisedeque.easyCRI.entity.enums.Titulo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 public class Requerimento implements Serializable{
@@ -26,21 +28,22 @@ public class Requerimento implements Serializable{
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	private Integer titulo;
-	
 	private String descricao;
 	
-	private String data;
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private Date data;
 	
+	@ManyToOne
+	@JoinColumn(name="titulo_id")
+	private Titulo titulo;
 	
 	public Requerimento() {}
 
-	public Requerimento(Integer id, String data, String descricao, Titulo titulo) {
+	public Requerimento(Integer id, Date data, String descricao) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.data = data;
-		this.titulo = titulo.getCod();
 	}	
 	
 	@Override
@@ -93,21 +96,21 @@ public class Requerimento implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
 	public Titulo getTitulo() {
-		return Titulo.toEnum(titulo);
+		return titulo;
 	}
 
 	public void setTitulo(Titulo titulo) {
-		this.titulo = titulo.getCod();
-	}
+		this.titulo = titulo;
+	}	
 	
 	
 
