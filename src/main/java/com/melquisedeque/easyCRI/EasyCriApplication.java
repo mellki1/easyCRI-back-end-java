@@ -47,14 +47,14 @@ public class EasyCriApplication implements CommandLineRunner{
 		
 		tituloDAO.saveAll(Arrays.asList(titulo1, titulo2, titulo3, titulo4));
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		
 		
 		
-		Requerimento req1 = new Requerimento(null, sdf.parse("27/02/2009"), "O registro da cédula nº.40/03877-88");
-		Requerimento req2 = new Requerimento(null, sdf.parse("29/03/2020"), "A averbação do aditivo nº.40/7778-888");
-		Requerimento req3 = new Requerimento(null, sdf.parse("26/03/2020"), "A averbação do Baixa");
-		Requerimento req4 = new Requerimento(null, sdf.parse("29/03/2020"), "Da escritura lavrada");
+		Requerimento req1 = new Requerimento(null, sdf.parse("27-02-2009"), "O registro da cédula nº.40/03877-88");
+		Requerimento req2 = new Requerimento(null, sdf.parse("29-03-2020"), "A averbação do aditivo nº.40/7778-888");
+		Requerimento req3 = new Requerimento(null, sdf.parse("26-03-2020"), "A averbação do Baixa");
+		Requerimento req4 = new Requerimento(null, sdf.parse("29-03-2020"), "Da escritura lavrada");
 		
 		
 		req1.setCliente(cli1);
