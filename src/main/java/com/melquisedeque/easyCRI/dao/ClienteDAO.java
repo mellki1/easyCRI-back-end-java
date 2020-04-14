@@ -15,4 +15,6 @@ public interface ClienteDAO extends JpaRepository<Cliente, Integer>{
 	Cliente findByNome(String nome);
 	
 	List<Cliente> findAll();
+
+	
 }
