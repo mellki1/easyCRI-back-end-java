@@ -1,5 +1,6 @@
 package com.melquisedeque.easyCRI.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +30,10 @@ public class RequerimentoService {
 		return obj.orElse(null);
 	}
 	
-	/*
-	public Requerimento findByidTipoRequerimento(Integer id) {
-		Optional<Requerimento> obj = repoRequerimento.findByidTipoRequerimento();
+	public List<Requerimento> findByData(Date data) {
+		List<Requerimento> obj = repoRequerimento.findByData(data);
 		
-		return obj.orElse(null);
-	}*/
+		return obj;
+	}
 	
 }

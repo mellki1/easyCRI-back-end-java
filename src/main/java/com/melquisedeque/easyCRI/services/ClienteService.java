@@ -42,8 +42,7 @@ public class ClienteService {
 		return obj;
 	}
 	
-	
-	
+
 	public Cliente registerCliente(Cliente cli) {
 		
 		return repo.save(cli);
