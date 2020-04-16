@@ -15,6 +15,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteDAO repo;
 	
+	//Metodos GET
 	
 	public List<Cliente> findAll() {
 		List<Cliente> obj = repo.findAll();
@@ -42,11 +43,10 @@ public class ClienteService {
 		return obj;
 	}
 	
-
-	public Cliente registerCliente(Cliente cli) {
+	//Metodos POST
+	
+	public Cliente registerCliente(Cliente cli){
 		
 		return repo.save(cli);
-		
 	}
-
 }

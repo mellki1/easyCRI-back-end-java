@@ -23,6 +23,8 @@ public class ClienteResourse {
 	@Autowired
 	private ClienteService service;
 	
+	
+	//Metodos GET
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> findAll() {
 		List<Cliente> obj = service.findAll();
@@ -73,9 +75,9 @@ public class ClienteResourse {
 		
 	}
 	
+	//Metodos POST
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> registerCliente(@RequestBody Cliente cli){
-		
 		Cliente obj = service.registerCliente(cli);
 		return ResponseEntity.ok().body("registro do cliente " +obj.getNome()+" foi efetuado com sucesso");
 		
