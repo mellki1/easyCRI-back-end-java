@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.validator.constraints.br.CPF;
-
 @Entity
 public class Cliente implements Serializable {
 		
@@ -25,7 +23,6 @@ public class Cliente implements Serializable {
 	private String identidade;
 	private String orgaoEmissor;
 	private String estadoEmissor;
-	@CPF
 	private String cpf;
 	private String nomePai;
 	private String nomeMae;
