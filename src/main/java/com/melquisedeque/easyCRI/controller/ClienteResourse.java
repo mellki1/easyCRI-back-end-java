@@ -1,5 +1,6 @@
 package com.melquisedeque.easyCRI.controller;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.melquisedeque.easyCRI.entity.Cliente;
 import com.melquisedeque.easyCRI.services.ClienteService;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value="/clientes")
@@ -34,16 +38,16 @@ public class ClienteResourse {
 	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 
 		
-		Cliente obj = service.find(id);
+		Cliente obj = service.findById(id);
 		
 		return ResponseEntity.ok().body(obj); 
 	}
 	
 	@RequestMapping(value="/cpf/{cpf}", method = RequestMethod.GET)
-	public ResponseEntity<?> findByCpf(@PathVariable String cpf) {
+	public ResponseEntity<?> findByCpf(@PathVariable String cpf) throws ObjectNotFoundException {
 		
 		
 		Cliente obj = service.findByCpf(cpf);
@@ -52,7 +56,7 @@ public class ClienteResourse {
 	}
 	
 	@RequestMapping(value="/nome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<?> findByNome(@PathVariable String nome) {
+	public ResponseEntity<?> findByNome(@PathVariable String nome) throws ObjectNotFoundException {
 		
 		
 		Cliente obj = service.findByNome(nome);
@@ -75,12 +79,12 @@ public class ClienteResourse {
 		
 	}
 	
-	//Metodos POST
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> registerCliente(@RequestBody Cliente cli){
-		Cliente obj = service.registerCliente(cli);
-		return ResponseEntity.ok().body("registro do cliente " +obj.getNome()+" foi efetuado com sucesso");
+	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli){
+		cli = service.insertCliente(cli);
 		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cli.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 	

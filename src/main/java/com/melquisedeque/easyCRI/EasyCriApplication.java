@@ -33,7 +33,7 @@ public class EasyCriApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		// TODO Auto-generated method stub
 		Cliente cli1 = new Cliente(null, "Melquisedeque Marcolino da Silva", "brasileira", "solteiro", "escrevente autorizado", "9.413.624", "SDS", "PE", "137.544.106-01", "Wellington Marcolino da Silva", "Angela Valentim da Silva", "Avenida Sao Paulo, nº.537, Santa Vitória-MG", "melki2011@gmail.com", "34 99885-6554");
 		Cliente cli2 = new Cliente(null, "Angela Valentim da Silva", "brasileira", "casada", "técnica em química", "MG-1.557.558", "PC", "MG", "763.029.114-00", "Joé Valentim da Silva", 		"Antonia Valentim da Silva", "Avenida Reinaldo Franco de Morais, nº.1175, Santa Vitória-MG", "angela-silva@hotmail.com", "34 99990-9670");
@@ -68,7 +68,7 @@ public class EasyCriApplication implements CommandLineRunner{
 		req4.setTitulo(titulo4);
 		
 		requerimentoDAO.saveAll(Arrays.asList(req1, req2, req3, req4));
-
+	*/
 	}
 
 }

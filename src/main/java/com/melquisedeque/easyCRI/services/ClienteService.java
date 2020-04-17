@@ -9,44 +9,59 @@ import org.springframework.stereotype.Service;
 import com.melquisedeque.easyCRI.dao.ClienteDAO;
 import com.melquisedeque.easyCRI.entity.Cliente;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @Service
 public class ClienteService {
 	
 	@Autowired
 	private ClienteDAO repo;
 	
-	//Metodos GET
+	/*
+	 * Metodos GET
+	 */
 	
+	//Pesquisa todos os clientes
 	public List<Cliente> findAll() {
 		List<Cliente> obj = repo.findAll();
 		
 		return obj;
 	}
 	
-	public Cliente find(Integer id) {
+	//Pesquisa clientes por ID
+	public Cliente findById(Integer id) throws ObjectNotFoundException{
+		
 		Optional<Cliente> obj = repo.findById(id);
 		
-		return obj.orElse(null);
+		
+		return obj.orElseThrow(()-> new ObjectNotFoundException(
+				"Objeto não encontrado! Id:"+ id + ",Tipo: " + Cliente.class.getName()));
 	}
 	
-	public Cliente findByCpf(String cpf) {
+	//Pesquisa Clientes por CPF
+	public Cliente findByCpf(String cpf) throws ObjectNotFoundException {
 		
-		Cliente obj = repo.findByCpf(cpf);
+		Optional<Cliente> obj = repo.findByCpf(cpf);
 		
-		return obj;
+		return obj.orElseThrow(()-> new ObjectNotFoundException(
+				"Objeto não encontrado! CPF:"+ cpf + ",Tipo: " + Cliente.class.getName()));
 	}
 	
-	public Cliente findByNome(String nome) {
+	//Pesquisa Clientes por nome
+	public Cliente findByNome(String nome) throws ObjectNotFoundException {
 		
-		Cliente obj = repo.findByNome(nome);
-		
-		return obj;
+		Optional<Cliente> obj = repo.findByNome(nome);
+		return obj.orElseThrow(()-> new ObjectNotFoundException(
+				"Objeto não encontrado! Nome:"+ nome + ",Tipo: " + Cliente.class.getName()));
 	}
 	
-	//Metodos POST
+	/*
+	 * Metodo POST
+	 */
 	
-	public Cliente registerCliente(Cliente cli){
-		
-		return repo.save(cli);
+	//Insere novo Cliente
+	public Cliente insertCliente(Cliente obj){
+		obj.setId(null);
+		return repo.save(obj);
 	}
 }
