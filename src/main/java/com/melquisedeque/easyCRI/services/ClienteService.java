@@ -60,8 +60,16 @@ public class ClienteService {
 	 */
 	
 	//Insere novo Cliente
-	public Cliente insertCliente(Cliente obj){
-		obj.setId(null);
-		return repo.save(obj);
+	//tentando tratar erro do CPF
+	public Cliente insertCliente(Cliente obj)  throws IllegalArgumentException{
+		Cliente obj1 = repo.save(obj);
+		if (obj1.equals(obj)) {
+			return obj1;
+		}
+		Optional<Cliente> optionalCliente = null;
+		
+		return optionalCliente.orElseThrow(()-> new IllegalArgumentException("Erro ao adicionar cliente"));
+		
 	}
+
 }

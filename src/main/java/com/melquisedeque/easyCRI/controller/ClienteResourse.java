@@ -3,6 +3,7 @@ package com.melquisedeque.easyCRI.controller;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -80,8 +81,9 @@ public class ClienteResourse {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli){
+	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli) throws IllegalArgumentException{
 		cli = service.insertCliente(cli);
+		
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cli.getId()).toUri();
 		return ResponseEntity.created(uri).build();
