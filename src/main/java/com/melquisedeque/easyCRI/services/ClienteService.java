@@ -10,6 +10,7 @@ import com.melquisedeque.easyCRI.dao.ClienteDAO;
 import com.melquisedeque.easyCRI.entity.Cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -64,7 +65,7 @@ public class ClienteService {
 	
 	//Insere novo Cliente
 	//tentando tratar erro do CPF
-	public void insertCliente(Cliente obj) throws ConstraintViolationException, UnexpectedTypeException {
+	public void insertCliente(Cliente obj) throws ConstraintViolationException, DataIntegrityViolationException {
 	
 		try {
 			
@@ -72,8 +73,8 @@ public class ClienteService {
 			repo.save(obj);
 		} catch (ConstraintViolationException e) {
 			throw new ConstraintViolationException("Cliente não adicionado, CPF inválido", null);
-		} catch (UnexpectedTypeException e){
-			throw new UnexpectedTypeException("Cliente já está cadastrado");
+		} catch (DataIntegrityViolationException e){
+			throw new DataIntegrityViolationException("Cliente já está cadastrado");
 		}
 	}
 }

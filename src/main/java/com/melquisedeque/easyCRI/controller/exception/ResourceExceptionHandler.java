@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 import javax.validation.UnexpectedTypeException;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,7 +26,7 @@ public class ResourceExceptionHandler {
 	}
 
 	@ExceptionHandler(ConstraintViolationException.class)
-	public ResponseEntity<StandardError> ConstraintViolation(ConstraintViolationException e, HttpServletRequest request){
+	public ResponseEntity<StandardError> constraintViolation(ConstraintViolationException e, HttpServletRequest request){
 		
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
@@ -34,8 +35,8 @@ public class ResourceExceptionHandler {
 		
 	}
 
-	@ExceptionHandler(UnexpectedTypeException.class)
-	public ResponseEntity<StandardError> UnexpectedType(UnexpectedTypeException e, HttpServletRequest request){
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<StandardError> dataIntegrityViolation(DataIntegrityViolationException e, HttpServletRequest request){
 		
 		
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());

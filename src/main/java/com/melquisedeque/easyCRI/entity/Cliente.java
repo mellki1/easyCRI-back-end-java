@@ -2,12 +2,11 @@ package com.melquisedeque.easyCRI.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
@@ -27,11 +26,11 @@ public class Cliente implements Serializable {
 	private String orgaoEmissor;
 	private String estadoEmissor;
 	@CPF
-	@UniqueElements
+	@Column(unique = true)
 	private String cpf;
 	private String nomePai;
 	private String nomeMae;
-	private String endereço;
+	private String endereco;
 	private String email;
 	private String telefone;
 	
@@ -40,7 +39,7 @@ public class Cliente implements Serializable {
 
 	public Cliente(Integer id, String nome, String nacionalidade, String estadoCivil, String profissao,
 			String identidade, String orgaoEmissor, String estadoEmissor, String cpf, String nomePai, String nomeMae,
-			String endereço, String email, String telefone) {
+			String endereco, String email, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -53,7 +52,7 @@ public class Cliente implements Serializable {
 		this.cpf = cpf;
 		this.nomePai = nomePai;
 		this.nomeMae = nomeMae;
-		this.endereço = endereço;
+		this.endereco = endereco;
 		this.email = email;
 		this.telefone = telefone;
 	}
@@ -174,12 +173,12 @@ public class Cliente implements Serializable {
 		this.nomeMae = nomeMae;
 	}
 
-	public String getEndereço() {
-		return endereço;
+	public String getendereco() {
+		return endereco;
 	}
 
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+	public void setendereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getEmail() {
