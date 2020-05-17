@@ -3,7 +3,10 @@ package com.melquisedeque.easyCRI.controller;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+
+import javax.validation.ConstraintViolationException;
+import javax.validation.UnexpectedTypeException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -81,7 +84,7 @@ public class ClienteResourse {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli) throws javax.validation.ConstraintViolationException{
+	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli) throws ConstraintViolationException, UnexpectedTypeException{
 	
 		
 		service.insertCliente(cli);

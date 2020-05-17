@@ -3,6 +3,9 @@ package com.melquisedeque.easyCRI.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.UnexpectedTypeException;
+
 import com.melquisedeque.easyCRI.dao.ClienteDAO;
 import com.melquisedeque.easyCRI.entity.Cliente;
 
@@ -61,15 +64,16 @@ public class ClienteService {
 	
 	//Insere novo Cliente
 	//tentando tratar erro do CPF
-	public void insertCliente(Cliente obj) throws javax.validation.ConstraintViolationException {
+	public void insertCliente(Cliente obj) throws ConstraintViolationException, UnexpectedTypeException {
 	
 		try {
+			
 			obj.setId(null);
 			repo.save(obj);
-		} catch (Exception e) {
-			//TODO: handle exception
-			throw new javax.validation.ConstraintViolationException("Cliente nao adicionado", null);
-			
+		} catch (ConstraintViolationException e) {
+			throw new ConstraintViolationException("Cliente não adicionado, CPF inválido", null);
+		} catch (UnexpectedTypeException e){
+			throw new UnexpectedTypeException("Cliente já está cadastrado");
 		}
 	}
 }
