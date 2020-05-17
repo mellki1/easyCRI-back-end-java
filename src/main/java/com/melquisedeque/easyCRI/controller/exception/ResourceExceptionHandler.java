@@ -22,4 +22,14 @@ public class ResourceExceptionHandler {
 		
 	}
 
+	@ExceptionHandler(javax.validation.ConstraintViolationException.class)
+	public ResponseEntity<StandardError> IllegalArgument(javax.validation.ConstraintViolationException e, HttpServletRequest request){
+		
+		
+		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+		
+	}
+
 }

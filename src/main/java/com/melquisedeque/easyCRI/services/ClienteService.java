@@ -3,11 +3,11 @@ package com.melquisedeque.easyCRI.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.melquisedeque.easyCRI.dao.ClienteDAO;
 import com.melquisedeque.easyCRI.entity.Cliente;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -61,15 +61,15 @@ public class ClienteService {
 	
 	//Insere novo Cliente
 	//tentando tratar erro do CPF
-	public Cliente insertCliente(Cliente obj)  throws IllegalArgumentException{
-		Cliente obj1 = repo.save(obj);
-		if (obj1.equals(obj)) {
-			return obj1;
+	public void insertCliente(Cliente obj) throws javax.validation.ConstraintViolationException {
+	
+		try {
+			obj.setId(null);
+			repo.save(obj);
+		} catch (Exception e) {
+			//TODO: handle exception
+			throw new javax.validation.ConstraintViolationException("Cliente nao adicionado", null);
+			
 		}
-		Optional<Cliente> optionalCliente = null;
-		
-		return optionalCliente.orElseThrow(()-> new IllegalArgumentException("Erro ao adicionar cliente"));
-		
 	}
-
 }

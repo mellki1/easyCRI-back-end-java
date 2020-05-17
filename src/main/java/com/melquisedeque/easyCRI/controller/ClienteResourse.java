@@ -81,10 +81,10 @@ public class ClienteResourse {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli) throws IllegalArgumentException{
-		cli = service.insertCliente(cli);
+	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli) throws javax.validation.ConstraintViolationException{
+	
 		
-		
+		service.insertCliente(cli);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cli.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}

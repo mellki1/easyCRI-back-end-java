@@ -36,7 +36,6 @@ public class Cliente implements Serializable {
 
 	public Cliente () {}
 
-
 	public Cliente(Integer id, String nome, String nacionalidade, String estadoCivil, String profissao,
 			String identidade, String orgaoEmissor, String estadoEmissor, String cpf, String nomePai, String nomeMae,
 			String endereço, String email, String telefone) {
