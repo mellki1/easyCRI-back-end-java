@@ -3,6 +3,7 @@ package com.melquisedeque.easyCRI.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,19 +21,24 @@ public class Requerimento implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(nullable = false)
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@Column(nullable = false)
 	private String descricao;
 	
+	@Column(nullable = false)
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date data;
 	
+	@Column(nullable = false)
 	@ManyToOne
 	@JoinColumn(name="titulo_id")
 	private Titulo titulo;

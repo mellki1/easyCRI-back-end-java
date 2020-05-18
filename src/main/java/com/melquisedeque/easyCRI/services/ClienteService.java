@@ -74,7 +74,7 @@ public class ClienteService {
 		} catch (ConstraintViolationException e) {
 			throw new ConstraintViolationException("Cliente não adicionado, CPF inválido", null);
 		} catch (DataIntegrityViolationException e){
-			throw new DataIntegrityViolationException("Cliente já está cadastrado");
+			throw new DataIntegrityViolationException("Cliente não cadastrado");
 		}
 	}
 }

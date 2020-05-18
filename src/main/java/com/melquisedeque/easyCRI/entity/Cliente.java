@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
@@ -17,21 +18,45 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
+
+	@Column(nullable = false)
 	private String nome;
+
+	@Column(nullable = false)
 	private String nacionalidade;
+
+	@Column(nullable = false)
 	private String estadoCivil;
+
+	@Column(nullable = false)
 	private String profissao;
+
+	@Column(unique = true, nullable = false)
 	private String identidade;
+
+	@Column(nullable = false)
 	private String orgaoEmissor;
+
+	@Column(nullable = false)
 	private String estadoEmissor;
+
 	@CPF
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String cpf;
+
+	@Column(nullable = false)
 	private String nomePai;
+
+	@Column(nullable = false)
 	private String nomeMae;
+
+	@Column(nullable = false)
 	private String endereco;
+
+	@Column(nullable = false)
 	private String email;
+
+	@Column(nullable = false)
 	private String telefone;
 	
 
