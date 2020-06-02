@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.melquisedeque.easyCRI.entity.sexoCliente.SexoCliente;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
@@ -51,6 +53,9 @@ public class Cliente implements Serializable {
 	private String nomeMae;
 
 	@Column(nullable = false)
+	private Integer sexo;
+
+	@Column(nullable = false)
 	private String endereco;
 
 	@Column(nullable = false)
@@ -63,8 +68,7 @@ public class Cliente implements Serializable {
 	public Cliente () {}
 
 	public Cliente(Integer id, String nome, String nacionalidade, String estadoCivil, String profissao,
-			String identidade, String orgaoEmissor, String estadoEmissor, String cpf, String nomePai, String nomeMae,
-			String endereco, String email, String telefone) {
+			String identidade, String orgaoEmissor, String estadoEmissor, String cpf, String nomePai, String nomeMae, SexoCliente sexo, String endereco, String email, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -77,6 +81,7 @@ public class Cliente implements Serializable {
 		this.cpf = cpf;
 		this.nomePai = nomePai;
 		this.nomeMae = nomeMae;
+		this.sexo = sexo.getCod();
 		this.endereco = endereco;
 		this.email = email;
 		this.telefone = telefone;
@@ -198,6 +203,14 @@ public class Cliente implements Serializable {
 		this.nomeMae = nomeMae;
 	}
 
+	public SexoCliente getSexo() {
+		return SexoCliente.converteParaEnum(sexo);
+	}
+
+	public void setSexo(SexoCliente sexo) {
+		this.sexo = sexo.getCod();
+	}
+	
 	public String getendereco() {
 		return endereco;
 	}
@@ -221,6 +234,8 @@ public class Cliente implements Serializable {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
+
 	
 
 }
