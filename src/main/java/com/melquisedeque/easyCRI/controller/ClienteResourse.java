@@ -1,7 +1,5 @@
 package com.melquisedeque.easyCRI.controller;
 
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.melquisedeque.easyCRI.entity.Cliente;
 import com.melquisedeque.easyCRI.services.ClienteService;
@@ -52,47 +49,17 @@ public class ClienteResourse {
 	
 	@RequestMapping(value="/cpf/{cpf}", method = RequestMethod.GET)
 	public ResponseEntity<?> findByCpf(@PathVariable String cpf) throws ObjectNotFoundException {
-		
-		
-		Cliente obj = service.findByCpf(cpf);
-		
-		return ResponseEntity.ok().body(obj);
-	}
-	
-	@RequestMapping(value="/nome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<?> findByNome(@PathVariable String nome) throws ObjectNotFoundException {
-		
-		
-		Cliente obj = service.findByNome(nome);
-		
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(service.findByCpf(cpf));
 	}
 	
 	@RequestMapping(value="/nome")
 	@ResponseBody
-	public ResponseEntity<?> clientesNomesAutocomplete(@RequestParam(value="term", required=false, defaultValue="") String term){
-		List<String> sugestoes = new ArrayList<String>();
-		List<Cliente> allClientes = service.findAll();
-		for(Cliente clientes : allClientes) {
-			if(clientes.getNome().contains(term)) {
-				sugestoes.add(clientes.getNome());	
-			}
-			
-		}
-		return ResponseEntity.ok().body(sugestoes);
-		
+	public ResponseEntity<?> findByNome(@RequestParam(value="nome") String nome) {
+		return ResponseEntity.ok().body(service.findByNome(nome));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> registerCliente(@RequestBody Cliente cli) throws ConstraintViolationException, UnexpectedTypeException{
-	
-		
-		service.insertCliente(cli);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cli.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+	public ResponseEntity<Cliente> registerCliente(@RequestBody Cliente cli) throws ConstraintViolationException, UnexpectedTypeException{
+		return ResponseEntity.ok(service.insertCliente(cli));
 	}
-	
-	
-
-	
 }

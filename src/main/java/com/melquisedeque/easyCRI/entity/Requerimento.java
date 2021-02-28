@@ -25,10 +25,9 @@ public class Requerimento implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(nullable = false)
+
 	@ManyToOne
-	@JoinColumn(name="cliente_id")
+	@JoinColumn(name="cliente_id", nullable = false)
 	private Cliente cliente;
 	
 	@Column(nullable = false)
@@ -38,9 +37,9 @@ public class Requerimento implements Serializable{
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date data;
 	
-	@Column(nullable = false)
+
 	@ManyToOne
-	@JoinColumn(name="titulo_id")
+	@JoinColumn(name="titulo_id",nullable = false)
 	private Titulo titulo;
 	
 	public Requerimento() {}
